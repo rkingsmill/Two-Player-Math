@@ -10,4 +10,16 @@
 
 @implementation Player
 
+
+-(id)init {
+    
+    if (self = [super init]){
+        _score = 0;
+        _lives = 3;
+        
+    }
+    return self;
+}
+
+
 @end

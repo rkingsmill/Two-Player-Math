@@ -10,15 +10,54 @@
 
 @implementation GameModel
 
+
 -(BOOL)answerCheckMethod:(NSString*)Answer:answer {
     
-    BOOL right = TRUE;
+    BOOL right = YES;
     
     NSInteger intAnswer = [answer integerValue];
     
     //if statement for calculating if response matches actual sum of randomized numbers
+    int actualResult = _x + _y;
+    
+    if (intAnswer != actualResult) {
+        right = NO;
+        
+    }
     
     return right;
+}
+
+-(NSInteger)updateScore:(BOOL)Answer:answer {
+    
+    NSInteger *newScore;
+    
+    if (answer == YES){
+    
+    newScore = _player.score + 1;
+      
+    }
+    
+    else {
+        newScore = _player.score;
+    }
+    
+    return newScore;
+}
+
+-(NSInteger)updateLives:(BOOL)Answer:answer) {
+    
+    NSInteger newLives;
+    
+    if (answer == YES) {
+        newLives = _player.lives - 1;
+    }
+    
+    else {
+        newLives = _player.lives;
+    }
+    
+    return newLives;
 }
 
 

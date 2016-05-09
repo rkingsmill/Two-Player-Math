@@ -11,6 +11,7 @@
 @interface Player : NSObject
 
 @property NSInteger *score;
+@property NSInteger *lives;
 @property NSInteger *answer;
 
 @end

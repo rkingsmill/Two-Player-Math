@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "GameModel.h"
+#import "Player.h"
 
 @interface ViewController ()
 
@@ -78,15 +80,23 @@
 
 - (IBAction)enterButtonTouch:(id)sender {
     
-    //[player answerCheckMethod:_resonse];
+    [ answerCheckMethod:_resonse];
     
     //update score label
+    //self.counterLabel.text = [NSString stringWithFormat:@"Count: %d", self.topButtonCounter.count];
+   
     
     //randomize numbers (game model method)
     
-    //update math question label
+     = arc4random_uniform(20);
+     = arc4random_uniform(20);
     
     
+    //update player and math question label
+    
+ 
+    
+   
 }
 
 - (void)viewDidLoad {

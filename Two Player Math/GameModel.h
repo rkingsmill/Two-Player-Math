@@ -12,6 +12,10 @@
 @interface GameModel : NSObject
 
 @property Player *player;
+@property int x;
+@property int y;
+
+
 
 
 @end
