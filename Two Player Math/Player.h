@@ -10,8 +10,12 @@
 
 @interface Player : NSObject
 
-@property NSInteger *score;
-@property NSInteger *lives;
-@property NSInteger *answer;
+@property NSInteger score;
+@property NSInteger lives;
+
+-(NSInteger)updateScore:(BOOL)answer;
+-(NSInteger)updateLives:(BOOL)answer;
+
+
 
 @end

@@ -11,11 +11,10 @@
 
 @interface GameModel : NSObject
 
-@property Player *player;
 @property int x;
 @property int y;
-
-
-
+@property BOOL isFirstPlayer;
+@property (strong, nonatomic) Player* player1;
+@property (strong, nonatomic) Player* player2;
 
 @end

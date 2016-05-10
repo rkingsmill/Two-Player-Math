@@ -79,32 +79,63 @@
 }
 
 - (IBAction)enterButtonTouch:(id)sender {
+
+    if (self.gameModel.isFirstPlayer) {
+        
+        NSLog(@"first players turn");
+        
+    } else {
+        
+        NSLog(@"second players turn");
+    }
     
-    [ answerCheckMethod:_resonse];
+    self.gameModel = [self giveQuestion];
     
-    //update score label
-    //self.counterLabel.text = [NSString stringWithFormat:@"Count: %d", self.topButtonCounter.count];
+    //check answer
+    BOOL answer = [self answerCheckMethod:self.response];
+    
+    Player *player;
+    
+    if (self.gameModel.isFirstPlayer) {
+    
+        player = self.gameModel.player1;
+        NSInteger score = [player updateScore:answer];
+        NSInteger lives = [player updateLives:answer];
+        self.player1Score.text = [NSString stringWithFormat:@"Player1: Score %ld, Lives %ld", score, lives];
+        NSLog(@"%ld", score);
+        NSLog(@"%ld", lives);
+    }
+    
+    else {
+        
+        player = self.gameModel.player2;
+        //updatescore and lives
+        NSInteger score = [player updateScore:answer];
+        NSInteger lives = [player updateLives:answer];
+        self.player2Score.text = [NSString stringWithFormat:@"Player2: Score %ld, Lives %ld", score, lives];
+    }
+    
    
     
-    //randomize numbers (game model method)
+    //if else statement (ternary)
+   // UILabel* scoreLabel = self.gameModel.isFirstPlayer ? self.player1Score : self.player2Score;
     
-     = arc4random_uniform(20);
-     = arc4random_uniform(20);
+    //update player and math question and their label
+    self.gameModel.isFirstPlayer = !self.gameModel.isFirstPlayer;
     
     
-    //update player and math question label
     
- 
-    
-   
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     //initiate empty string for user response
-    _response = [[NSMutableString alloc]init];
+  
+    self.response = [[NSMutableString alloc]init];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,7 +143,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(GameModel*)giveQuestion {
+    GameModel *gameModel = [[GameModel alloc]init];
+    self.mathQuestion.text = [NSString stringWithFormat:@"%d + %d = ?", gameModel.x, gameModel.y];
+    return gameModel;
+}
 
+-(BOOL)answerCheckMethod:(NSString*)answer {
+    
+    BOOL right = YES;
+    
+    NSInteger intAnswer = [answer integerValue];
+    
+    //if statement for calculating if response matches actual sum of randomized numbers
+    int actualResult = self.gameModel.x + self.gameModel.y;
+    
+    if (intAnswer != actualResult) {
+        right = NO;
+        
+    }
+    
+    return right;
+}
 
 
 @end

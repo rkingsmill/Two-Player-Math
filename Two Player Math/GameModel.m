@@ -10,54 +10,19 @@
 
 @implementation GameModel
 
-
--(BOOL)answerCheckMethod:(NSString*)Answer:answer {
-    
-    BOOL right = YES;
-    
-    NSInteger intAnswer = [answer integerValue];
-    
-    //if statement for calculating if response matches actual sum of randomized numbers
-    int actualResult = _x + _y;
-    
-    if (intAnswer != actualResult) {
-        right = NO;
+-(instancetype) init {
+    self = [super init];
+    if (self) {
         
+        _x = arc4random_uniform(20);
+        _y = arc4random_uniform(20);
+        _player1 = [[Player alloc]init];
+        _player2 = [[Player alloc]init];
+        _isFirstPlayer = YES;
+    
     }
     
-    return right;
-}
-
--(NSInteger)updateScore:(BOOL)Answer:answer {
-    
-    NSInteger *newScore;
-    
-    if (answer == YES){
-    
-    newScore = _player.score + 1;
-      
-    }
-    
-    else {
-        newScore = _player.score;
-    }
-    
-    return newScore;
-}
-
--(NSInteger)updateLives:(BOOL)Answer:answer) {
-    
-    NSInteger newLives;
-    
-    if (answer == YES) {
-        newLives = _player.lives - 1;
-    }
-    
-    else {
-        newLives = _player.lives;
-    }
-    
-    return newLives;
+    return self;
 }
 
 

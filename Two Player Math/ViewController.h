@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameModel.h"
 
 
 @interface ViewController : UIViewController
+
+@property GameModel *gameModel;
+
+
+-(BOOL)answerCheckMethod:(NSString*)answer;
+
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Player.h"
+#import "GameModel.h"
 
 @implementation Player
 
@@ -19,6 +20,42 @@
         
     }
     return self;
+}
+
+
+-(NSInteger)updateScore:(BOOL)answer {
+    
+    NSInteger newScore;
+    
+    if (answer == YES) {
+        
+        newScore = self.score + 1;
+        
+    }
+    
+    else {
+        
+        newScore = self.score;
+    }
+    
+    return newScore;
+}
+
+-(NSInteger)updateLives:(BOOL)answer {
+    
+    NSInteger newLives;
+    
+    if (answer == YES) {
+        
+        newLives = self.lives - 1;
+    }
+    
+    else {
+        
+        newLives = self.lives;
+    }
+    
+    return newLives;
 }
 
 
